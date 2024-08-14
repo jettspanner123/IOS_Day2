@@ -84,7 +84,7 @@ struct ContentView: View {
                             .foregroundStyle(Color.black)
                             .cornerRadius(40)
                             .onTapGesture {
-                                withAnimation(.spring) {
+                                withAnimation(.spring()) {
                                     isShowingLoader = false
                                 }
                             }
@@ -96,7 +96,7 @@ struct ContentView: View {
                     
                 }
             }
-            .transition(.slide)
+            .transition(.opacity)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color("Background"))
             .foregroundStyle(Color.white)
@@ -104,7 +104,8 @@ struct ContentView: View {
             .ignoresSafeArea()
         } else {
             VStack {
-                Dashboard(SecondScreenShow: $SecondScreenAppear, isShowingLoader: $isShowingLoader)
+                Dashboard(SecondScreenShow:$SecondScreenAppear, isShowingLoader: $isShowingLoader)
+//                Dashboard()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color("Background"))
@@ -114,6 +115,8 @@ struct ContentView: View {
         }
     }
 }
+
+
 
 #Preview {
     ContentView()
