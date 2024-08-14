@@ -96,7 +96,7 @@ struct ContentView: View {
                     
                 }
             }
-            .transition(.move(edge: .leading))
+            .transition(.slide)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color("Background"))
             .foregroundStyle(Color.white)
@@ -104,7 +104,7 @@ struct ContentView: View {
             .ignoresSafeArea()
         } else {
             VStack {
-                Dashboard(SecondScreenShow: $SecondScreenAppear)
+                Dashboard(SecondScreenShow: $SecondScreenAppear, isShowingLoader: $isShowingLoader)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color("Background"))

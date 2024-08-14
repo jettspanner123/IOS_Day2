@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var SecondScreenShow: Bool 
+    @Binding var isShowingLoader: Bool
     
     
     var Category : [String] = ["All", "Mantras", "Medication", "Yogas", "Sutras"]
@@ -26,10 +27,18 @@ struct Dashboard: View {
             
             VStack {
                 HStack {
-                    Text("Medics".uppercased())
-                        .font(.system(size: 20, weight: .bold))
-                        .offset(x: SecondScreenShow ? 0 : -100)
+                    Image(systemName: "arrow.left")
+                        .imageScale(.large)
+                        .offset(x: SecondScreenShow ? 0 : -50)
                         .animation(.spring(duration: 1).delay(0.5), value: SecondScreenShow)
+                        .onTapGesture() {
+                            withAnimation() {
+                                SecondScreenShow = false
+                            }
+                            withAnimation(.spring().delay(1)) {
+                                isShowingLoader = true
+                            }
+                        }
                     Spacer()
                 }
                 .padding(
@@ -72,7 +81,7 @@ struct Dashboard: View {
                                         CurrentSelectedCategory = category
                                     }
                                     .scaleEffect(SecondScreenShow ? 1 : 0)
-                                    .animation(.sprint(duration: 0.5).delay(0.5), value: SecondScreenShow)
+                                    .animation(.spring(duration: 0.5).delay(0.5), value: SecondScreenShow)
                             }
                         }
                     }
